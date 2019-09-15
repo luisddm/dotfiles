@@ -2,6 +2,8 @@ set number
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+let mapleader=","
+
 " Use system clipboard
 set clipboard=unnamedplus
 
