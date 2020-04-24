@@ -160,3 +160,14 @@ let g:vim_json_syntax_conceal = 0
 set noswapfile
 set nobackup
 set nowb
+
+command Q q
+command W w
+command WQ wq
+
+" Open NERDTree on startup and put focus in the other tab
+autocmd VimEnter * NERDTree
+autocmd VimEnter * wincmd p
+
+" Use F3 to replace word under cursor
+nnoremap <F3> :%s/<C-r><C-w>/
