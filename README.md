@@ -5,7 +5,7 @@
 Instalamos silversearcher, que es un buscador recursivo de texto dentro de los archivos de un directorio y sus subdirectorios.
 
 ```shell
-sudo apt install silversearcher-ag curl
+sudo apt install silversearcher-ag curl tldr fzf
 ```
 
 Instalamos algunas fuentes:
@@ -198,6 +198,8 @@ Instalamos tmate
 ```shell
 sudo apt install tmate
 ```
+
+## TODO
 
 https://github.com/zaiste/tmuxified
 https://github.com/ndyakov/pimux
