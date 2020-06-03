@@ -126,15 +126,15 @@ colorscheme PaperColor
 set background=dark
 
 augroup PythonHighlightCustomization
-  " Constants
-  autocmd Filetype python syntax match octaveSemicolon "\<\([A-Z][A-Z0-9_]\+\)\>"
-  " Functions
-  autocmd Filetype python syntax match plantumlParticipant '\%([^[:cntrl:][:space:][:punct:][:digit:]]\|_\)\%([^[:cntrl:][:punct:][:space:]]\|_\)*\ze\%(\s*(\)'
-  " Objects
-  autocmd Filetype python syntax match pythonComment "\<\w\+\ze\."
-  " Keyword params
-  autocmd FileType python syntax match javaScriptReserved "\v\s{-}\zs\w+\ze\=(\=)@!(\_s)@!"
-  " TODO numeros decimales también en rosa
+    " Constants
+    autocmd Filetype python syntax match octaveSemicolon "\<\([A-Z][A-Z0-9_]\+\)\>"
+    " Functions
+    autocmd Filetype python syntax match plantumlParticipant '\%([^[:cntrl:][:space:][:punct:][:digit:]]\|_\)\%([^[:cntrl:][:punct:][:space:]]\|_\)*\ze\%(\s*(\)'
+    " Objects
+    autocmd Filetype python syntax match pythonComment "\<\w\+\ze\."
+    " Keyword params
+    autocmd FileType python syntax match javaScriptReserved "\v\s{-}\zs\w+\ze\=(\=)@!(\_s)@!"
+    " TODO numeros decimales también en rosa
 augroup END
 
 " Python syntax
@@ -142,12 +142,12 @@ let g:python_highlight_all = 1
 
 " PaperColor theme config
 let g:PaperColor_Theme_Options = {
-      \   'language': {
-      \     'python': {
-      \       'highlight_builtins' : 1
-      \     }
-      \   }
-      \ }
+    \   'language': {
+    \     'python': {
+    \       'highlight_builtins' : 1
+    \     }
+    \   }
+    \ }
 
 " Highlight current line in insert mode
 autocmd InsertEnter * set cul
@@ -165,9 +165,9 @@ set expandtab
 " Keep undo history across sessions, by storing in file.
 " Only works all the time.
 if has('persistent_undo') && !isdirectory(expand('~').'/vim/backups')
-  silent !mkdir ~/vim/backups > /dev/null 2>&1
-  set undodir=~/vim/backups
-  set undofile
+    silent !mkdir ~/vim/backups > /dev/null 2>&1
+    set undodir=~/vim/backups
+    set undofile
 endif
 
 
@@ -214,7 +214,7 @@ nnoremap <F3> :%s/\<<C-r><C-w>\>//g<Left><Left>
 
 " Use ag (silver searcher) when available for searching with ack.vim plugin
 if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
+    let g:ackprg = 'ag --vimgrep'
 endif
 
 " Find full word under cursor in every file of the project
@@ -237,8 +237,8 @@ let g:indentLine_noConcealCursor=""
 
 " Execute Mambo
 if executable('mamba')
-  command Mambo ! mamba -f documentation %:p
-  nnoremap <F2> :Mambo<CR>
+    command Mambo ! mamba -f documentation %:p
+    nnoremap <F2> :Mambo<CR>
 endif
 
 " Delay for some operations to take place
@@ -265,128 +265,128 @@ set guioptions-=e  " Don't use GUI tabline
 
 " Lightline config extracted when executing :h lightline-powerful-example
 let g:lightline = {
-	\ 'colorscheme': 'wombat',
-	\ 'active': {
-	\   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ], ['ctrlpmark'] ],
-	\   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'fileformat', 'fileencoding', 'filetype' ], [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ] ]
-	\ },
-	\ 'component_function': {
-	\   'fugitive': 'LightlineFugitive',
-	\   'filename': 'LightlineFilename',
-	\   'fileformat': 'LightlineFileformat',
-	\   'filetype': 'LightlineFiletype',
-	\   'fileencoding': 'LightlineFileencoding',
-	\   'mode': 'LightlineMode',
-	\   'ctrlpmark': 'CtrlPMark',
-	\ },
-	\ 'component': {
-	\   'lineinfo': '%3l:%-2v',
-	\ },
-	\ 'component_expand': {
+    \ 'colorscheme': 'wombat',
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ], ['ctrlpmark'] ],
+    \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'fileformat', 'fileencoding', 'filetype' ], [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ] ]
+    \ },
+    \ 'component_function': {
+    \   'fugitive': 'LightlineFugitive',
+    \   'filename': 'LightlineFilename',
+    \   'fileformat': 'LightlineFileformat',
+    \   'filetype': 'LightlineFiletype',
+    \   'fileencoding': 'LightlineFileencoding',
+    \   'mode': 'LightlineMode',
+    \   'ctrlpmark': 'CtrlPMark',
+    \ },
+    \ 'component': {
+    \   'lineinfo': '%3l:%-2v',
+    \ },
+    \ 'component_expand': {
     \   'linter_checking': 'lightline#ale#checking',
     \   'linter_infos': 'lightline#ale#infos',
     \   'linter_warnings': 'lightline#ale#warnings',
     \   'linter_errors': 'lightline#ale#errors',
     \   'linter_ok': 'lightline#ale#ok',
-	\ },
-	\ 'component_type': {
+    \ },
+    \ 'component_type': {
     \   'linter_checking': 'right',
     \   'linter_infos': 'right',
     \   'linter_warnings': 'warning',
     \   'linter_errors': 'error',
     \   'linter_ok': 'left',
-	\ },
-	\ 'separator' : { 'left': '', 'right': '' },
-	\ 'subseparator': { 'left': '', 'right': '' }
-	\ }
+    \ },
+    \ 'separator' : { 'left': '', 'right': '' },
+    \ 'subseparator': { 'left': '', 'right': '' }
+    \ }
 
 function! LightlineModified()
-	return &ft ==# 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+    return &ft ==# 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
 endfunction
 
 function! LightlineReadonly()
-	return &ft !~? 'help' && &readonly ? '' : ''
+    return &ft !~? 'help' && &readonly ? '' : ''
 endfunction
 
 function! LightlineFilename()
-	let fname = expand('%:f')
-	return fname ==# 'ControlP' && has_key(g:lightline, 'ctrlp_item') ? g:lightline.ctrlp_item :
-		\ fname =~# '^__Tagbar__\|__Gundo\|NERD_tree' ? '' :
-		\ &ft ==# 'vimfiler' ? vimfiler#get_status_string() :
-		\ &ft ==# 'unite' ? unite#get_status_string() :
-		\ &ft ==# 'vimshell' ? vimshell#get_status_string() :
-		\ (LightlineReadonly() !=# '' ? LightlineReadonly() . ' ' : '') .
-		\ (fname !=# '' ? fname : '[No Name]') .
-		\ (LightlineModified() !=# '' ? ' ' . LightlineModified() : '')
+    let fname = expand('%:f')
+    return fname ==# 'ControlP' && has_key(g:lightline, 'ctrlp_item') ? g:lightline.ctrlp_item :
+        \ fname =~# '^__Tagbar__\|__Gundo\|NERD_tree' ? '' :
+        \ &ft ==# 'vimfiler' ? vimfiler#get_status_string() :
+        \ &ft ==# 'unite' ? unite#get_status_string() :
+        \ &ft ==# 'vimshell' ? vimshell#get_status_string() :
+        \ (LightlineReadonly() !=# '' ? LightlineReadonly() . ' ' : '') .
+        \ (fname !=# '' ? fname : '[No Name]') .
+        \ (LightlineModified() !=# '' ? ' ' . LightlineModified() : '')
 endfunction
 
 function! LightlineFugitive()
-  try
-    if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler' && exists('*FugitiveHead')
-		  let mark = ' '  " edit here for cool mark
-		  let branch = FugitiveHead()
-		  return branch !=# '' ? mark.branch : ''
-    endif
-  catch
+    try
+        if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler' && exists('*FugitiveHead')
+            let mark = ' '  " edit here for cool mark
+            let branch = FugitiveHead()
+            return branch !=# '' ? mark.branch : ''
+        endif
+    catch
     endtry
     return ''
 endfunction
 
 function! LightlineFileformat()
-  return winwidth(0) > 70 ? &fileformat : ''
+    return winwidth(0) > 70 ? &fileformat : ''
 endfunction
 
 function! LightlineFiletype()
-  return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+    return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
 endfunction
 
 function! LightlineFileencoding()
-  return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
+    return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
 endfunction
 
 function! LightlineMode()
-	let fname = expand('%:t')
-	return fname =~# '^__Tagbar__' ? 'Tagbar' :
-		\ fname ==# 'ControlP' ? 'CtrlP' :
-		\ fname ==# '__Gundo__' ? 'Gundo' :
-		\ fname ==# '__Gundo_Preview__' ? 'Gundo Preview' :
-		\ fname =~# 'NERD_tree' ? 'NERDTree' :
-		\ &ft ==# 'unite' ? 'Unite' :
-		\ &ft ==# 'vimfiler' ? 'VimFiler' :
-		\ &ft ==# 'vimshell' ? 'VimShell' :
-		\ winwidth(0) > 60 ? lightline#mode() : ''
+    let fname = expand('%:t')
+    return fname =~# '^__Tagbar__' ? 'Tagbar' :
+        \ fname ==# 'ControlP' ? 'CtrlP' :
+        \ fname ==# '__Gundo__' ? 'Gundo' :
+        \ fname ==# '__Gundo_Preview__' ? 'Gundo Preview' :
+        \ fname =~# 'NERD_tree' ? 'NERDTree' :
+        \ &ft ==# 'unite' ? 'Unite' :
+        \ &ft ==# 'vimfiler' ? 'VimFiler' :
+        \ &ft ==# 'vimshell' ? 'VimShell' :
+        \ winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
 
 function! CtrlPMark()
-  if expand('%:t') ==# 'ControlP' && has_key(g:lightline, 'ctrlp_item')
-	  call lightline#link('iR'[g:lightline.ctrlp_regex])
-	  return lightline#concatenate([g:lightline.ctrlp_prev, g:lightline.ctrlp_item, g:lightline.ctrlp_next], 0)
-  else
-	  return ''
-  endif
+    if expand('%:t') ==# 'ControlP' && has_key(g:lightline, 'ctrlp_item')
+        call lightline#link('iR'[g:lightline.ctrlp_regex])
+        return lightline#concatenate([g:lightline.ctrlp_prev, g:lightline.ctrlp_item, g:lightline.ctrlp_next], 0)
+    else
+        return ''
+    endif
 endfunction
 
 let g:ctrlp_status_func = {
-	\ 'main': 'CtrlPStatusFunc_1',
-	\ 'prog': 'CtrlPStatusFunc_2',
-	\ }
+    \ 'main': 'CtrlPStatusFunc_1',
+    \ 'prog': 'CtrlPStatusFunc_2',
+    \ }
 
 function! CtrlPStatusFunc_1(focus, byfname, regex, prev, item, next, marked)
-	let g:lightline.ctrlp_regex = a:regex
-	let g:lightline.ctrlp_prev = a:prev
-	let g:lightline.ctrlp_item = a:item
-	let g:lightline.ctrlp_next = a:next
-	return lightline#statusline(0)
+    let g:lightline.ctrlp_regex = a:regex
+    let g:lightline.ctrlp_prev = a:prev
+    let g:lightline.ctrlp_item = a:item
+    let g:lightline.ctrlp_next = a:next
+    return lightline#statusline(0)
 endfunction
 
 function! CtrlPStatusFunc_2(str)
-	return lightline#statusline(0)
+    return lightline#statusline(0)
 endfunction
 
 let g:tagbar_status_func = 'TagbarStatusFunc'
 
 function! TagbarStatusFunc(current, sort, fname, ...) abort
-	return lightline#statusline(0)
+    return lightline#statusline(0)
 endfunction
 
 let g:lightline#ale#indicator_checking = "\uf110 "
