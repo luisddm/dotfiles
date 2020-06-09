@@ -203,3 +203,6 @@ sudo apt install tmate
 
 https://github.com/zaiste/tmuxified
 https://github.com/ndyakov/pimux
+https://github.com/dandavison/delta
+
+Usar diferentes .gitconfig para carpeta de trabajo y de cosas personales para configurar nombre y email

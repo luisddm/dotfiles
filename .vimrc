@@ -8,10 +8,13 @@
 "    ░░    ░░ ░░░  ░░  ░░ ░░░     ░░░░░
 "
 "  ▓▓▓▓▓▓▓▓▓▓
-" ░▓ author ▓ luisddm <luisddm@posteo.net>
+" ░▓ author ▓ luisddm
 " ░▓ code   ▓ https://github.com/luisddm/dotfiles/
 " ░▓▓▓▓▓▓▓▓▓▓
 " ░░░░░░░░░░
+
+" TODO Hightlight also decimal numbers after the dot
+" TODO Find how to show filetype icons on lightline and tabs
 
 set nocompatible                " be iMproved, required
 filetype off                    " required
@@ -57,6 +60,7 @@ Plugin 'her/synicons.vim'
 
 " Git
 Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
 
 " Lightline
 Plugin 'itchyny/lightline.vim'
@@ -64,9 +68,6 @@ Plugin 'itchyny/lightline.vim'
 " Python
 Plugin 'vim-python/python-syntax'
 Plugin 'python-mode/python-mode'
-
-" Manage Git
-Plugin 'tpope/vim-fugitive'
 
 " Commenting
 Plugin 'tpope/vim-commentary'
@@ -87,8 +88,6 @@ Plugin 'ntpeters/vim-better-whitespace'
 " Autoclosing
 Plugin 'raimondi/delimitmate'
 
-"Plugin 'easymotion/vim-easymotion'
-
 " Linting
 Plugin 'dense-analysis/ale'
 Plugin 'maximbaz/lightline-ale'
@@ -99,9 +98,8 @@ Plugin 'elzr/vim-json'
 " Python autocompletion
 Plugin 'davidhalter/jedi-vim'
 
-" Manage cursors TODO load only if vim, not neovim
+" Manage cursors - load only if using vim, not necesary with neovim
 " Plugin 'wincent/terminus'
-
 
 call vundle#end()
 
@@ -110,35 +108,20 @@ filetype plugin indent on
 " NERDTree
 map <C-x> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
-let NERDTreeIgnore=['\.pyc']
+let NERDTreeIgnore=['\.pyc$', '\.orig$', '\.egg-info', 'pycache', '\.sw*$']
 
 " Exclude swap or cache files using Vim's wildignore
-" set wildignore+=*.swp,*.pyc
+set wildignore+=*.swp,*.pyc
 
-" No swap files
+" Don't generate swap files
 set noswapfile
 set nobackup
 set nowb
 
-" Style
+" Style and theme
 syntax enable
 colorscheme PaperColor
 set background=dark
-
-augroup PythonHighlightCustomization
-    " Constants
-    autocmd Filetype python syntax match octaveSemicolon "\<\([A-Z][A-Z0-9_]\+\)\>"
-    " Functions
-    autocmd Filetype python syntax match plantumlParticipant '\%([^[:cntrl:][:space:][:punct:][:digit:]]\|_\)\%([^[:cntrl:][:punct:][:space:]]\|_\)*\ze\%(\s*(\)'
-    " Objects
-    autocmd Filetype python syntax match pythonComment "\<\w\+\ze\."
-    " Keyword params
-    autocmd FileType python syntax match javaScriptReserved "\v\s{-}\zs\w+\ze\=(\=)@!(\_s)@!"
-    " TODO numeros decimales también en rosa
-augroup END
-
-" Python syntax
-let g:python_highlight_all = 1
 
 " PaperColor theme config
 let g:PaperColor_Theme_Options = {
@@ -148,6 +131,21 @@ let g:PaperColor_Theme_Options = {
     \     }
     \   }
     \ }
+
+" Highlight some python syntax patterns
+augroup PythonHighlightCustomization
+    " Constants
+    autocmd Filetype python syntax match octaveSemicolon "\<\([A-Z][A-Z0-9_]\+\)\>"
+    " Functions
+    autocmd Filetype python syntax match plantumlParticipant '\%([^[:cntrl:][:space:][:punct:][:digit:]]\|_\)\%([^[:cntrl:][:punct:][:space:]]\|_\)*\ze\%(\s*(\)'
+    " Objects
+    autocmd Filetype python syntax match pythonComment "\<\w\+\ze\."
+    " Keyword params
+    autocmd FileType python syntax match javaScriptReserved "\v\s{-}\zs\w+\ze\=(\=)@!(\_s)@!"
+augroup END
+
+" Python syntax
+let g:python_highlight_all = 1
 
 " Highlight current line in insert mode
 autocmd InsertEnter * set cul
@@ -161,15 +159,6 @@ set shiftwidth=4
 set tabstop=4
 set softtabstop=4
 set expandtab
-
-" Keep undo history across sessions, by storing in file.
-" Only works all the time.
-if has('persistent_undo') && !isdirectory(expand('~').'/vim/backups')
-    silent !mkdir ~/vim/backups > /dev/null 2>&1
-    set undodir=~/vim/backups
-    set undofile
-endif
-
 
 " Searching
 set incsearch       " Find the next match as we type the search
@@ -193,24 +182,24 @@ nnoremap <space> za
 
 " Ale linting
 let g:ale_linters = {'python': ['pylint']}
-let g:ale_python_executable='python'
-let g:ale_python_pylint_use_global=1
+let g:ale_python_executable = 'python'
+let g:ale_python_pylint_use_global = 1
+
+" Disable pymode-linting to avoid redundancy with ale linting
+let g:pymode_lint = 0
 
 " Set indent line character for indentline plugin
 let g:indentLine_char = '▏'
 
 " Whitespaces
-let g:better_whitespace_enabled=1
-let g:strip_whitespace_on_save=1
-
-" Disable pymode-linting to avoid redundancy with ale linting
-let g:pymode_lint = 0
+let g:better_whitespace_enabled = 1
+let g:strip_whitespace_on_save = 1
 
 " Press F12 to paste without modifying indentation
 set pastetoggle=<F12>
 
 " Use F3 to search and replace word under cursor
-nnoremap <F3> :%s/\<<C-r><C-w>\>//g<Left><Left>
+nnoremap <leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
 
 " Use ag (silver searcher) when available for searching with ack.vim plugin
 if executable('ag')
@@ -218,36 +207,36 @@ if executable('ag')
 endif
 
 " Find full word under cursor in every file of the project
-" TODO repasar esto
 nnoremap <leader>1 :Ack! '\b<cword>\b'<cr>
 nnoremap <leader>2 :Ack! <cword> <cr>
 
-" Search files with ctrl + p
+" Search files with CtrlP
 let g:ctrlp_cmd = 'CtrlPMixed'    " search for mru, buffer and files all together
 let g:ctrlp_max_deph = 15         " maximum directory depth
 let g:ctrlp_max_history = 5       " The maximum number of input strings you want CtrlP to remember
 let g:crlp_match_window = 'bottom,order:btt,min:1,max:15,results:15'
-" TODO investigar esto, no se si va
+
+" Funky
 noremap <F4> :CtrlPFunky<CR>
 let g:ctrlp_funky_syntax_highlight = 1
 
+" Turn of highlight of search results
+noremap <C-n> :nohl<CR>
+vnoremap <C-n> :nohl<CR>
+inoremap <C-n> :nohl<CR>
+
 " Don't hide quotes in json files (vim-json hides them by default)
 let g:vim_json_syntax_conceal = 0
-let g:indentLine_noConcealCursor=""
+let g:indentLine_noConcealCursor = ""
 
-" Execute Mambo
+" Execute Mamba test runner if available
 if executable('mamba')
     command Mambo ! mamba -f documentation %:p
-    nnoremap <F2> :Mambo<CR>
+    nnoremap <leader>t :Mambo<CR>
 endif
 
 " Delay for some operations to take place
 set updatetime=100
-
-" Disable search highlight
-noremap <C-n> :nohl<CR>
-vnoremap <C-n> :nohl<CR>
-inoremap <C-n> :nohl<CR>
 
 " Map save and quit
 nnoremap <leader>q :q<CR>
@@ -261,9 +250,7 @@ nnoremap <A-Right> :tabnext<CR>
 set showtabline=2  " Show tabline
 set guioptions-=e  " Don't use GUI tabline
 
-" TODO añadir iconos a las tabs
-
-" Lightline config extracted when executing :h lightline-powerful-example
+" Lightline config (based on the example showed when executing :h lightline-powerful-example)
 let g:lightline = {
     \ 'colorscheme': 'wombat',
     \ 'active': {
@@ -394,3 +381,4 @@ let g:lightline#ale#indicator_infos = "\uf129 "
 let g:lightline#ale#indicator_warnings = "\uf071 "
 let g:lightline#ale#indicator_errors = "\uf05e "
 let g:lightline#ale#indicator_ok = "\uf00c "
+
