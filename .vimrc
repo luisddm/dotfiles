@@ -190,10 +190,13 @@ set pastetoggle=<F12>
 " Use F3 to search and replace word under cursor
 nnoremap <F2> :%s/\<<C-r><C-w>\>//g<Left><Left>
 
+" Config default command for fzf
+let $FZF_DEFAULT_COMMAND = 'fdfind --hidden --type file --ignore-file .gitignore'
+
 " Execute fzf with preview
-command! -bang -nargs=? -complete=dir FuzzyFind
+command! -bang -nargs=? -complete=dir Files
     \ call fzf#vim#files(<q-args>, {'options': ['--info=inline', '--preview', 'batcat --color=always --line-range :96 {}']}, <bang>0)
-nnoremap <leader>f :FuzzyFind<CR>
+nnoremap <leader>f :Files<CR>
 
 " Execute Mamba test runner if available
 if executable('mamba')
