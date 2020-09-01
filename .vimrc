@@ -240,7 +240,8 @@ nnoremap <leader>2 :Ack! <cword> <cr>
 let g:ctrlp_cmd = 'CtrlPMixed'    " search for mru, buffer and files all together
 let g:ctrlp_max_deph = 15         " maximum directory depth
 let g:ctrlp_max_history = 5       " The maximum number of input strings you want CtrlP to remember
-let g:crlp_match_window = 'bottom,order:btt,min:1,max:15,results:15'
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:15'
+let g:ctrlp_user_command = 'fdfind --hidden --type file --ignore-file .gitignore'
 
 " Funky
 noremap <F4> :CtrlPFunky<CR>
