@@ -191,7 +191,7 @@ set pastetoggle=<F12>
 nnoremap <F2> :%s/\<<C-r><C-w>\>//g<Left><Left>
 
 " Config default command for fzf
-let $FZF_DEFAULT_COMMAND = 'fdfind --hidden --type file --ignore-file .gitignore'
+let $FZF_DEFAULT_COMMAND = 'fdfind --hidden --type file'
 
 " Execute fzf with preview
 command! -bang -nargs=? -complete=dir Files
@@ -241,7 +241,7 @@ let g:ctrlp_cmd = 'CtrlPMixed'    " search for mru, buffer and files all togethe
 let g:ctrlp_max_deph = 15         " maximum directory depth
 let g:ctrlp_max_history = 5       " The maximum number of input strings you want CtrlP to remember
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:15'
-let g:ctrlp_user_command = 'fdfind --hidden --type file --ignore-file .gitignore'
+let g:ctrlp_user_command = 'fdfind --hidden --type file'
 
 " Funky
 noremap <F4> :CtrlPFunky<CR>
