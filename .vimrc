@@ -73,6 +73,7 @@ Plugin 'VundleVim/Vundle.vim' " plugins manager
 
 " git integration
 Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
 
 " autocompletion
 Plugin 'ervandew/supertab' " supertab is a vim plugin which allows you to use <Tab> for all your insert completion needs (:help ins-completion)
@@ -189,10 +190,13 @@ endif
 " ale
 let g:ale_linters = {
 \   'python': ['pylint'],
+\   'javascript': ['eslint'],
 \}
-let g:ale_sign_error = 'X'
-let g:ale_sign_warning = '!'
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '❱'
 let g:ale_set_highlights = 0
+" let g:ale_python_executable='/usr/bin/python3'
+" let g:ale_python_pylint_use_global=1
 
 " ctrl+p
 let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn|pyc))$'
@@ -201,11 +205,14 @@ let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|sv
 let g:indentLine_char = '▏'
 
 " tagbar
-let g:tagbar_width=45
-let g:tagbar_autofocus=1
-let g:tagbar_expand=1
-let g:tagbar_singleclick=1
-let g:tagbar_autoshowtag=1
+let g:tagbar_width = 45
+let g:tagbar_autofocus = 1
+let g:tagbar_expand = 1
+let g:tagbar_singleclick = 1
+let g:tagbar_autoshowtag = 1
+
+" pymode
+let g:pymode_lint = 0
 
 """""""""""""""
 " key mapping "
@@ -248,6 +255,8 @@ nnoremap <F3> :call TagInNewTab()<CR>
 nnoremap <F4> :Ag <C-r><C-w><CR>
 nnoremap <F8> :%s/\<<C-r><C-w>\>//g<Left><Left>
 nnoremap <F10> :TagbarToggle<CR>
+
+nnoremap <Leader>g :! go run .<cr>
 
 """""""""""
 " aliases "
