@@ -143,6 +143,9 @@ Plugin 'editorconfig/editorconfig-vim'
 " jinja2
 Plugin 'glench/vim-jinja2-syntax'
 
+" json
+Plugin 'elzr/vim-json'
+
 call vundle#end()
 
 """"""""""""""""""
@@ -213,6 +216,9 @@ let g:tagbar_autoshowtag = 1
 
 " pymode
 let g:pymode_lint = 0
+
+" json
+let g:vim_json_syntax_conceal = 0
 
 """""""""""""""
 " key mapping "
